@@ -1,8 +1,16 @@
 import Swal from "sweetalert2";
 import { PublicAPI } from "../../utils/api";
 import { BOOK_ACTION_TYPES } from "./book.types";
-
-export const fetchBooks = (searchKeyword: string | undefined) => {
+import { ThunkAction } from "redux-thunk";
+import { booksReducer } from "./book.reducer";
+import { Action } from "redux";
+type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  typeof booksReducer,
+  unknown,
+  Action<string | undefined>
+>;
+export const fetchBooks = (searchKeyword: string | undefined): AppThunk => {
   return async (dispatch: any) => {
     dispatch({ type: BOOK_ACTION_TYPES.FETCH_BOOK_START });
     try {

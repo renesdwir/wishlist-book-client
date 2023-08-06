@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import CardList from "../../components/card-list/card-list.component";
 import { Button, HompageContainer, Input } from "./homepage.styled";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   getBooksDataMap,
   getIsLoadingBook,
@@ -9,11 +9,12 @@ import {
 import { fetchBooks } from "../../store/book/book.action";
 import Spinner from "../../components/spinner/spinner.component";
 import Swal from "sweetalert2";
+import { useAppDispatch } from "../../hooks/hooks";
 
 const Homepage = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const books = useSelector(getBooksDataMap);
   const isLoading = useSelector(getIsLoadingBook);
   useEffect(() => {

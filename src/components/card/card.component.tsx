@@ -1,6 +1,4 @@
 import { Rating } from "@smastrom/react-rating";
-import { useDispatch } from "react-redux";
-
 import {
   Author,
   Button,
@@ -13,6 +11,7 @@ import {
   addWishlist,
   deleteFromWishlist,
 } from "../../store/wishlist/wishlist.action";
+import { useAppDispatch } from "../../hooks/hooks";
 interface CardProps {
   book: {
     authors: string;
@@ -24,8 +23,9 @@ interface CardProps {
     _id: string | undefined;
   };
 }
+
 const Card = (props: CardProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     authors,
     averageRating,

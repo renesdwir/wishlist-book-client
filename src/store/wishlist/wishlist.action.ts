@@ -4,7 +4,14 @@ import { WISHLIST_ACTION_TYPES } from "./wishlist.types";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { wishlistsReducer } from "./wishlist.reducer";
+import { Action } from "redux";
 
+type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  typeof wishlistsReducer,
+  unknown,
+  Action<string>
+>;
 export const fetchWishlist = () => {
   return async (dispatch: any) => {
     dispatch({ type: WISHLIST_ACTION_TYPES.WISHLIST_START });
@@ -58,7 +65,7 @@ export const addWishlist = (
   };
 };
 
-export const deleteFromWishlist = (bookId: string) => {
+export const deleteFromWishlist = (bookId: string): AppThunk => {
   return async (dispatch: any, getState: any) => {
     try {
       const confirmationResult = await Swal.fire({

@@ -1,4 +1,5 @@
 import { WISHLIST_ACTION_TYPES } from "./wishlist.types";
+
 const INITIAL_STATE = {
   wishlist: [],
   isLoading: false,
